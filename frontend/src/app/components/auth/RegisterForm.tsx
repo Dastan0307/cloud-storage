@@ -1,6 +1,6 @@
 'use client'
 
-import { LoginFormDTO } from '@/app/api/dto/auth.dto'
+import { RegisterFormDTO } from '@/app/api/dto/auth.dto'
 import { Button, Form, Input, notification } from 'antd'
 import { setCookie } from 'nookies'
 import { FC } from 'react'
@@ -8,10 +8,10 @@ import styles from './Auth.module.scss'
 
 import * as Api from '../../api'
 
-export const LoginForm: FC = () => {
-	const onSubmit = async (values: LoginFormDTO) => {
+export const RegisterForm: FC = () => {
+	const onSubmit = async (values: RegisterFormDTO) => {
 		try {
-			const { token } = await Api.auth.login(values)
+			const { token } = await Api.auth.register(values)
 
 			notification.success({
 				message: 'Успешно!',
@@ -24,7 +24,6 @@ export const LoginForm: FC = () => {
 			})
 
 			location.href = '/dashboard'
-			
 		} catch (error) {
 			console.warn('LoginError', error)
 		}
@@ -46,6 +45,18 @@ export const LoginForm: FC = () => {
 						{
 							required: true,
 							message: 'Укажите почту',
+						},
+					]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label='Полное имя'
+					name='fullname'
+					rules={[
+						{
+							required: true,
+							message: 'Укажите полное имя',
 						},
 					]}
 				>

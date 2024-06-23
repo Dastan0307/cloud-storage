@@ -1,7 +1,7 @@
-import axios from 'axios'
-import { parseCookies } from 'nookies'
+import axios from "axios";
+import { parseCookies } from "nookies";
 
-axios.defaults.baseURL = 'http://localhost:7777'
+axios.defaults.baseURL = "http://localhost:7777";
 
 axios.interceptors.request.use((config) => {
 	if (typeof window !== 'undefined') {
@@ -9,6 +9,8 @@ axios.interceptors.request.use((config) => {
 
 		config.headers.Authorization = 'Bearer ' + token
 	}
+
+	return config;
 })
 
 export default axios
