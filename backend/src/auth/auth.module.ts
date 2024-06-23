@@ -16,9 +16,7 @@ import { LocalStrategy } from './strategies/local.strategy';
       useFactory: async (configService: ConfigService) => {
         return {
           secret: configService.get('SECRET_KEY'),
-          signOptions: {
-            expiresIn: configService.get('EXPIRES_IN'),
-          },
+          signOptions: { expiresIn: configService.get('EXPIRES_IN') },
         };
       },
     }),

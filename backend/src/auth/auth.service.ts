@@ -13,10 +13,12 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.usersService.findByEmail(email);
+
     if (user && user.password === password) {
       const { password, ...result } = user;
       return result;
     }
+
     return null;
   }
 
@@ -27,13 +29,15 @@ export class AuthService {
       return {
         token: this.jwtService.sign({ id: userData.id }),
       };
-    } catch (error) {
+    } catch (err) {
+      console.log(err);
       throw new ForbiddenException('Ошибка при регистрации');
     }
   }
+
   async login(user: UserEntity) {
     return {
-      access_token: this.jwtService.sign({ id: user.id }),
+      token: this.jwtService.sign({ id: user.id }),
     };
   }
 }

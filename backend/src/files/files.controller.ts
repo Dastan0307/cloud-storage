@@ -11,11 +11,11 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
-import { UserId } from 'src/auth/decorators/user-id.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { UserId } from 'src/decorators/user-id.decorator';
+import { FileType } from './entities/file.entity';
 import { FilesService } from './files.service';
 import { fileStorage } from './storage';
-import { FileType } from './entities/file.entity'
 
 @Controller('files')
 @ApiTags('files')
